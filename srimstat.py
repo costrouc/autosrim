@@ -4,8 +4,6 @@ import shutil
 import os
 import glob
 
-import os
-
 srim_module_path = "C:/Users/Chris/Desktop/srim/"
 
 Vacancy = namedtuple("Vacancy","names units data")
@@ -13,6 +11,12 @@ Range = namedtuple("Range","names units data")
 Novac = namedtuple("Novac","names units data")
 Layer = namedtuple("Layer","id material depth density")
 Density = namedtuple("Density","val units")
+
+class SrimOutput:
+    def __init__(self,iterable):
+        self.layers = []
+        self.data = []
+    
 
 def runSrimOnDirectory(datapath):
     "Run srim on all inputfiles given in data_path. srim_module_path is the directory or TRIM.exe"
