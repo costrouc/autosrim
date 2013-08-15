@@ -4,6 +4,8 @@ import shutil
 import os
 import glob
 
+import os
+
 srim_module_path = "C:/Users/Chris/Desktop/srim/"
 
 Vacancy = namedtuple("Vacancy","names units data")
