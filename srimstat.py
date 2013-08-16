@@ -4,19 +4,13 @@ import shutil
 import os
 import glob
 
-srim_module_path = "C:/Users/Chris/Desktop/srim/"
+srim_module_path = "\\home\\costrouc\\.wine\\Program\ Files\\SRIM\\"
 
 Vacancy = namedtuple("Vacancy","names units data")
 Range = namedtuple("Range","names units data")
 Novac = namedtuple("Novac","names units data")
 Layer = namedtuple("Layer","id material depth density")
 Density = namedtuple("Density","val units")
-
-class SrimOutput:
-    def __init__(self,iterable):
-        self.layers = []
-        self.data = []
-    
 
 def runSrimOnDirectory(datapath):
     "Run srim on all inputfiles given in data_path. srim_module_path is the directory or TRIM.exe"
@@ -32,14 +26,13 @@ def runSrimOnDirectory(datapath):
 def runSrimOnFile(filename):
     "Run Srim on filename"
     shutil.copyfile(filename, srim_module_path + '\\TRIM.in')
-    os.system(srim_module_path + '\\TRIM.exe')
+    os.system('wine TRIM.exe')
     outputfiles = ['range','tdata','ioniz','vacancy','phonon','novac']
     for outfile in outputfiles:
         if os.path.isfile(outfile + '.txt'):
             shutil.copyfile(srim_module_path + '\\' + outfile + '.txt', os.path.split(filename)[0] + '\\' + outfile + '_' + os.path.basename(filename).split('.')[0] + '.txt')
         else:
             print 'No ' + outfile + ' results were not saved for' + os.path.basename(filename) + '...'
-    readSlimTestFiles(os.path.basename(filename).split('.')[0], os.path.split()[0])
 
 def readSlimTestFiles(testname, datapath):
     "Reads in the appropriate slim files"
