@@ -26,6 +26,7 @@ using wine. Currently I have yet to run into a bug.
    Often times TRIM will quit due to an inproperly formatted input file and gives
    vauge error messages. Running
    > ./processsriminput.py -v <file>
+
    will check the inputfile if it is improperly formatted
    
 ## Running Srim in Batch mode
@@ -33,11 +34,13 @@ using wine. Currently I have yet to run into a bug.
    takes to run an application. This module's goal is to automate much of the time
    being spent to "babysit" the program. Using:
    > ./batchsrim.py -e <exec_path> (-d <dir> | -f <file>)
+   
    A user can submit a file or directory (where all *.in file are run). All
    Output files from the Trim calculation will be moved to <dir> or the root of <file>. Make sure
    to include the __full pathname__.
    
-### Future feature* The script will automatically resubmit input_files
+### Future feature
+    The script will automatically resubmit input_files
     that fail util they complete.
 
 # Parsing Output of Trim Calculation
