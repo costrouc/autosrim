@@ -16,19 +16,19 @@ using wine. Currently I have yet to run into a bug.
 - Parsing output text files from TRIM calculations
 - Ploting and Vizualization for the output of TRIM calculations
 
-* Managing input to Srim
+# Managing input to Srim
 
-** Generate Example TRIM input file
+## Generate Example TRIM input file
    A simple trim file will be outputted to STDOUT using the command
    > ./processsriminput.py -s
 
-** Validator for TRIM input file (Not Implemented Yet)
+## Validator for TRIM input file (Not Implemented Yet)
    Often times TRIM will quit due to an inproperly formatted input file and gives
    vauge error messages. Running
    > ./processsriminput.py -v <file>
    will check the inputfile if it is improperly formatted
    
-** Running Srim in Batch mode
+## Running Srim in Batch mode
    Srim on its own is very intensive in the amount of manual work that it
    takes to run an application. This module's goal is to automate much of the time
    being spent to "babysit" the program. Using:
@@ -37,12 +37,12 @@ using wine. Currently I have yet to run into a bug.
    Output files from the Trim calculation will be moved to <dir> or the root of <file>. Make sure
    to include the __full pathname__.
    
-*** Future feature* The script will automatically resubmit input_files
+### Future feature* The script will automatically resubmit input_files
     that fail util they complete.
 
-* Parsing Output of Trim Calculation
+# Parsing Output of Trim Calculation
   Curently 75% of Trim output is parsed and stored in a dictionary data-structure.
   This part will be filled in as the output is completely parsed.
 
-* Statistics, Vizualization, and Plotting of Srim Output
+# Statistics, Vizualization, and Plotting of Srim Output
   Currently this module is not implemented. 
