@@ -43,12 +43,19 @@ def runSrimOnFile(srim_module_path, filename):
     
     os.system('wine TRIM.exe')
 
-    outputfiles = ['RANGE','TDATA','IONIZ','VACANCY','PHONON','NOVAC']
-    for outfile in outputfiles:
+    tableoutputfiles = ['RANGE','TDATA','IONIZ','VACANCY','PHONON','NOVAC', 'E2RECOIL', 'LATERAL']
+    for outfile in tableoutputfiles:
         if os.path.isfile(outfile + '.txt'):
             shutil.copyfile(srim_module_path + '/' + outfile + '.txt', os.path.split(filename)[0] + '/' + outfile + '_' + os.path.basename(filename).split('.')[0] + '.txt')
         else:
-            print 'No ' + outfile + ' results were not saved for' + os.path.basename(filename) + '...'
+            print 'No ' + outfile + ' table results were not saved for ' + os.path.basename(filename) + '...'
+
+    dataoutputfiles = ['BACKSCAT', 'COLLISION', 'EXYZ', 'RANGE_3D', 'SPUTTER', 'TRANSMIT', 'TRIMOUT']
+    for outfile in dataoutputfiles:
+        if os.path.isfile('SRIM Outputs/' + outfile + '.txt'):
+            shutil.copyfile(srim_module_path + '/SRIM Outputs/' + outfile + '.txt', os.path.split(filename)[0] + '/' + outfile + '_' + os.path.basename(filename).split('.')[0] + '.txt')
+        else:
+            print 'No ' + outfile + ' data results were not saved for ' + os.path.basename(filename) + '...'
 
 if __name__ == '__main__':    
     from docopt import docopt
