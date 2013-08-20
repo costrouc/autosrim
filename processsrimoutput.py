@@ -268,6 +268,180 @@ def readLateralFile(filename):
 
     return {'labels': labels, 'units': units, 'data': data}
 
+def readBackScatFile(filename):
+    """
+    Reads in the associated backscatter plot file from slim
+    This file tabulates the kinetics of ions or atoms leaving the target.
+    """
+    
+    labels = ['Type Atom', 'Ion Number', 'Atom Number', 'Energy', 'Depth', 'Lateral-Position-X', 'Lateral-Position Y', 'Atom-Direction Cos(X)', 'Atom-Direction Cos(Y)', 'Atom Direction Cos(Z)' ]
+    units = ['S = Sputtered Atom, B = Backscattered Ion, T = Transmitted Ion', 'Ion Number', 'Z of Atom Leaving', 'eV', 'Angstroms', 'Angstroms', 'Angstroms', 'Angstroms', 'Angstroms', 'Angstroms']
+    inputfile = open(filename, "r")
+    line = inputfile.readline()
+    
+    while line != ' Ion  Atom   Energy        Depth       Lateral-Position        Atom Direction      \r\n':
+        line = inputfile.readline()
+
+    # These 3 lines are simply to label the data
+    line = inputfile.readline()
+    line = inputfile.readline()
+    line = inputfile.readline()
+    
+    data = []
+    while line:
+        data.append(line.split())
+        line = inputfile.readline()
+        
+    inputfile.close()
+    data = np.array(data)
+    
+    return {'labels': labels, 'units': units, 'data': data} 
+
+def readEXYZFile(filename):
+    """
+    Reads in the special EXYZ file from slim
+    This file gives the rough position of the ion every 10eV
+    """
+    
+    labels = ['Ion Number', 'Energy', 'Depth', 'Lateral-Position-X', 'Lateral-Position Y', 'Electronic Stop', 'Energy Lost to Last Recoil' ]
+    units = ['Ion Number', 'keV', 'Angstroms', 'Angstroms', 'Angstroms', 'eV/A', 'eV']
+    inputfile = open(filename, "r")
+    line = inputfile.readline()
+    
+    while line != 'Ion       Energy     Depth (X)     Y           Z       Electronic   Energy Lost to\r\n':
+        line = inputfile.readline()
+
+    # These 3 lines are simply to label the data
+    line = inputfile.readline()
+    line = inputfile.readline()
+    line = inputfile.readline()
+    
+    data = []
+    while line:
+        data.append(line.split())
+        line = inputfile.readline()
+        
+    inputfile.close()
+    data = np.array(data, dtype='float')
+    
+    return {'labels': labels, 'units': units, 'data': data} 
+
+
+def readRange3DFile(filename):
+    """
+    Reads in the Range 3D file from slim
+    This file gives the final ion positions
+    """
+    
+    labels = ['Ion Number', 'Depth', 'Lateral-Position-Y', 'Lateral-Position Z']
+    units = ['Ion Number', 'Angstroms', 'Angstroms', 'Angstroms']
+    inputfile = open(filename, "r")
+    line = inputfile.readline()
+    
+    while line != 'Ion       Depth  X   Lateral Y   Lateral Z  \r\n':
+        line = inputfile.readline()
+
+    # These 3 lines are simply to label the data
+    line = inputfile.readline()
+    line = inputfile.readline()
+    line = inputfile.readline()
+    
+    data = []
+    while line:
+        data.append(line.split())
+        line = inputfile.readline()
+        
+    inputfile.close()
+    data = np.array(data, dtype='float')
+    
+    return {'labels': labels, 'units': units, 'data': data} 
+
+def readSputterFile(filename):
+    """
+    Reads in the associated backscatter plot file from slim
+    This file tabulates the kinetics of ions or atoms leaving the target.
+    """
+    
+    labels = ['Type Atom', 'Ion Number', 'Atom Number', 'Energy', 'Depth X', 'Lateral-Position-Y', 'Lateral-Position Z', 'Atom-Direction Cos(X)', 'Atom-Direction Cos(Y)', 'Atom Direction Cos(Z)' ]
+    units = ['S = Sputtered Atom, B = Backscattered Ion, T = Transmitted Ion', 'Ion Number', 'Z of Atom Leaving', 'eV', 'Angstroms', 'Angstroms', 'Angstroms', 'Angstroms', 'Angstroms', 'Angstroms']
+    inputfile = open(filename, "r")
+    line = inputfile.readline()
+    
+    while line != ' Ion  Atom   Energy        Depth       Lateral-Position        Atom Direction      \r\n':
+        line = inputfile.readline()
+
+    # These 3 lines are simply to label the data
+    line = inputfile.readline()
+    line = inputfile.readline()
+    line = inputfile.readline()
+    
+    data = []
+    while line:
+        data.append(line.split())
+        line = inputfile.readline()
+        
+    inputfile.close()
+    data = np.array(data)
+    
+    return {'labels': labels, 'units': units, 'data': data} 
+
+def readTransmitFile(filename):
+    """
+    Reads in the associated backscatter plot file from slim
+    This file tabulates the kinetics of ions or atoms leaving the target.
+    """
+    
+    labels = ['Type Atom', 'Ion Number', 'Atom Number', 'Energy', 'Depth X', 'Lateral-Position-Y', 'Lateral-Position Z', 'Atom-Direction Cos(X)', 'Atom-Direction Cos(Y)', 'Atom Direction Cos(Z)' ]
+    units = ['S = Sputtered Atom, B = Backscattered Ion, T = Transmitted Ion', 'Ion Number', 'Z of Atom Leaving', 'eV', 'Angstroms', 'Angstroms', 'Angstroms', 'Angstroms', 'Angstroms', 'Angstroms']
+    inputfile = open(filename, "r")
+    line = inputfile.readline()
+    
+    while line != ' Ion  Atom   Energy        Depth       Lateral-Position        Atom Direction      \r\n':
+        line = inputfile.readline()
+
+    # These 3 lines are simply to label the data
+    line = inputfile.readline()
+    line = inputfile.readline()
+    line = inputfile.readline()
+    
+    data = []
+    while line:
+        data.append(line.split())
+        line = inputfile.readline()
+        
+    inputfile.close()
+    data = np.array(data)
+    
+    return {'labels': labels, 'units': units, 'data': data}
+
+def readTrimOutFile(filename):
+    """
+    Reads in the associated backscatter plot file from slim
+    This file tabulates the kinetics of ions or atoms leaving the target.
+    """
+    
+    labels = ['Type Atom', 'Ion Number', 'Atom Number', 'Energy', 'Depth X', 'Lateral-Position-Y', 'Lateral-Position Z', 'Atom-Direction Cos(X)', 'Atom-Direction Cos(Y)', 'Atom Direction Cos(Z)' ]
+    units = ['S = Sputtered Atom, B = Backscattered Ion, T = Transmitted Ion', 'Ion Number', 'Z of Atom Leaving', 'eV', 'Angstroms', 'Angstroms', 'Angstroms', 'Angstroms', 'Angstroms', 'Angstroms']
+    inputfile = open(filename, "r")
+    line = inputfile.readline()
+    
+    while line != ' Ion  Atom   Energy        Depth       Lateral-Position        Atom Direction      \r\n':
+        line = inputfile.readline()
+
+    # These 3 lines are simply to label the data
+    line = inputfile.readline()
+    line = inputfile.readline()
+    line = inputfile.readline()
+    
+    data = []
+    while line:
+        data.append(line.split())
+        line = inputfile.readline()
+        
+    inputfile.close()
+    data = np.array(data)
+    
+    return {'labels': labels, 'units': units, 'data': data}
 
 if __name__ == '__main__':    
     from docopt import docopt
