@@ -1,3 +1,5 @@
+**Depriciated** I have automated SRIM calculations in [this package https://gitlab.com/costrouc/srim-python](https://gitlab.com/costrouc/srim-python)
+
 AutoSrim 
 =========
 version. 0.0.1
